@@ -1,12 +1,11 @@
 const initialState = {
     z_cur: 'z',
 }
-
 const reducer = (state = initialState, action)=>{
     const {type, payload}=action
     switch (type){
         case UPDATE_Z_CUR:
-            const newState = {...state, name: payload}
+            const newState = {...state, z_cur: payload}
             return newState
         default:
             return state
