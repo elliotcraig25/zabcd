@@ -20,9 +20,15 @@ class Zc extends React.Component {
     }
     render(){
         return (
-            <div className='z_a'>
-                {this.state.zcText} 
-            </div>
+            this.state.zcText ? (
+                <div className='z_a'>
+                    {this.state.zcText} 
+                </div>
+            ):(
+                <div className='z_a'>
+                    Edit
+                </div>
+            )
         )
     }
 }
