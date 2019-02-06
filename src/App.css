@@ -30,3 +30,76 @@
     transform: rotate(360deg);
   }
 }
+
+.page_one {
+  background-color: gray;
+  height: 600px;
+  width: 1120px;
+}
+  .header {
+    background-color: #61dafb;
+    height: 120px;
+    width: 1120px;
+  }
+  .body {
+    background-color: cornflowerblue;
+    height: 480px;
+    width: 1120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .x_y_z_container {
+      /* background-color: coral; */
+      height: 400px;
+      width: 1040px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+      .z_x {
+        /* background-color: crimson; */
+        height: 400px;
+        width: 760px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+        .z {
+          /* background-color: slateblue; */
+          height: 240px;
+          width: 760px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+          .z_a {
+            background-color: aqua;
+            height: 240px;
+            width: 160px;
+          }
+          .z_b {
+            background-color: aqua;
+            height: 240px;
+            width: 160px;
+          }
+          .z_c {
+            background-color: aqua;
+            height: 240px;
+            width: 160px;
+          }
+          .z_d {
+            background-color: aqua;
+            height: 240px;
+            width: 160px;
+          }
+        .x {
+          background-color: aqua;
+          height: 120px;
+          width: 760px;
+        }
+      .y {
+        background-color: aqua;
+        height: 400px;
+        width: 240px;
+      }
