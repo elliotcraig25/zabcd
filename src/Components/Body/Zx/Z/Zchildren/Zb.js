@@ -30,7 +30,7 @@ class Zb extends React.Component {
         })
     } 
     updateReduxZCur(){
-        this.props.updateZCur('zb')
+        this.props.updateZCur(`${this.state.z_cur}b`)
     }
     render(){
         return (

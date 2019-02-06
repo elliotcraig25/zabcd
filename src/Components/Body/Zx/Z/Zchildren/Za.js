@@ -30,7 +30,7 @@ class Za extends React.Component {
         })
     }
     updateReduxZCur(){
-        this.props.updateZCur('za')
+        this.props.updateZCur(`${this.state.z_cur}a`)
     }
     render(){
         return (
