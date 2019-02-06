@@ -33,7 +33,6 @@ class Za extends React.Component {
         this.props.updateZCur('za')
     }
     render(){
-        console.log(this.props.z_cur)
         return (
             this.state.zaText ? (
                 <div className='z_a' onClick={()=>this.updateReduxZCur()}>
