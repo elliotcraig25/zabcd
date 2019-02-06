@@ -13,9 +13,6 @@ class Zb extends React.Component {
     }
     componentDidMount(){
         this.getZData()
-        console.log(this.state.z_cur)
-        console.log(this.props.z_cur)
-        console.log(this.state.zbText)
     }
     componentDidUpdate(){
         if(this.state.z_cur!==this.props.z_cur){
