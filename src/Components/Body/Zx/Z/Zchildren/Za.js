@@ -3,15 +3,14 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 
 class Za extends React.Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             zaText: '',
-            z_cur: 'z'
         }
     }  
     componentDidMount(){
-        let {z_cur} = this.state
+        let {z_cur} = this.props
         axios.post(`/api/getza`, {z_cur})
         .then(response=>{
             this.setState({
@@ -33,5 +32,11 @@ class Za extends React.Component {
         )
     }
 }
-
-export default Za
+const mapStateToProps = (state) => {
+    const {z_cur} = state
+    console.log(z_cur)
+    return {
+        z_cur
+    }
+}
+export default connect(mapStateToProps)(Za)
