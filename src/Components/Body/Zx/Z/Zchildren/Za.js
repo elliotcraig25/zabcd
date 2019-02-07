@@ -8,7 +8,8 @@ class Za extends React.Component {
         super(props)
         this.state = {
             zaText: '',
-            z_cur: ''
+            z_cur: '',
+            text: ''
         }
     }  
     componentDidMount(){
@@ -53,6 +54,19 @@ class Za extends React.Component {
             }
         })
     }
+    handleText(value){
+        this.setState({
+            text: value
+        })
+        console.log(this.state.text)
+    }
+    editDb(){
+        // console.log(`editing`)
+        let text = this.state.text
+        let z_id = this.props.z_cur
+        axios.post(`/api/change_za`, {text, z_id}) 
+        .then(()=>console.log(`it is done`)) 
+    }
     render(){
         return (
             this.state.zaText ? (
@@ -62,6 +76,8 @@ class Za extends React.Component {
             ):(
                 <div className='z_a'>
                     Edit
+                    <input onChange={e=>this.handleText(e.target.value)}/>
+                    <button onClick={()=>this.editDb()}>do the edit</button> 
                 </div>
             )
         )

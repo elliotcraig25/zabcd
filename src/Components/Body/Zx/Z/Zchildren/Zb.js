@@ -8,7 +8,8 @@ class Zb extends React.Component {
         super(props)
         this.state = {
             zbText: '',
-            z_cur: ''
+            z_cur: '',
+            text: ''
         }
     }
     componentDidMount(){
@@ -36,6 +37,9 @@ class Zb extends React.Component {
         let newZID = `${this.state.z_cur}b`
         console.log(`here it is agin`, newZID)
         axios.post(`/api/create_new_row`, {newZID})
+        .then(()=>{
+            this.updateReduxZCur()
+        }) 
     }
     addOrUpdate(){
         let movingTo = `${this.props.z_cur}b`
@@ -47,9 +51,21 @@ class Zb extends React.Component {
             }else{
                 // console.log('does not exist')
                 this.createNewRow()
-                this.updateReduxZCur()
             }
         })
+    }
+    handleText(value){
+        this.setState({
+            text: value
+        })
+        console.log(this.state.text)
+    }
+    editDb(){
+        // console.log(`editing`)
+        let text = this.state.text
+        let z_id = this.props.z_cur
+        axios.post(`/api/change_zb`, {text, z_id}) 
+        .then(()=>console.log(`it is done`)) 
     }
     render(){
         return (
@@ -60,6 +76,8 @@ class Zb extends React.Component {
             ):(
                 <div className='z_a'>
                     Edit
+                    <input onChange={e=>this.handleText(e.target.value)}/>
+                    <button onClick={()=>this.editDb()}>do the edit</button> 
                 </div>
             )
         )

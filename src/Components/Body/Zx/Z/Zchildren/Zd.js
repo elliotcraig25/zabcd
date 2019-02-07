@@ -32,10 +32,31 @@ class Zd extends React.Component {
     updateReduxZCur(){
         this.props.updateZCur(`${this.state.z_cur}d`)
     }
+    createNewRow(){
+        let newZID = `${this.state.z_cur}a`
+        // console.log(`here it is agin`, newZID)
+        axios.post(`/api/create_new_row`, {newZID})
+        .then(()=>{
+            this.updateReduxZCur()
+        }) 
+    }
+    addOrUpdate(){
+        let movingTo = `${this.props.z_cur}a`
+        axios.post(`/api/does_z_id_exist`, {movingTo})
+        .then(response=>{
+            // console.log(response.data[0])
+            if(response.data[0]){
+                this.updateReduxZCur()
+            }else{
+                // console.log('does not exist')
+                this.createNewRow()
+            }
+        })
+    }
     render(){
         return (
             this.state.zdText ? (
-                <div className='z_a' onClick={()=>this.updateReduxZCur()}>
+                <div className='z_a' onClick={()=>this.addOrUpdate()}>
                     {this.state.zdText}
                 </div>
             ):(

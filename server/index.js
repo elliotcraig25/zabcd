@@ -18,6 +18,9 @@ app.post(`/api/getzd`, ctrl.getZD)
 
 app.post(`/api/does_z_id_exist`, ctrl.doesZIDExist)
 app.post(`/api/create_new_row`, ctrl.createNewRow)
+app.post(`/api/change_za`, ctrl.editA)
+app.post(`/api/change_zb`, ctrl.editB)
+app.post(`/api/change_zc`, ctrl.editC)
 
 serverPort = process.env.SERVER_PORT || 4000
 app.listen(serverPort, ()=>{console.log(`listening on the port ${serverPort}`)})

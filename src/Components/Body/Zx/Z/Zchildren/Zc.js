@@ -8,7 +8,8 @@ class Zc extends React.Component {
         super()
         this.state = {
             zcText: '',
-            z_cur: ''
+            z_cur: '',
+            text: ''
         }
     }
     componentDidMount(){
@@ -32,15 +33,51 @@ class Zc extends React.Component {
     updateReduxZCur(){
         this.props.updateZCur(`${this.state.z_cur}c`)
     }
+    createNewRow(){
+        let newZID = `${this.state.z_cur}a`
+        // console.log(`here it is agin`, newZID)
+        axios.post(`/api/create_new_row`, {newZID})
+        .then(()=>{
+            this.updateReduxZCur()
+        }) 
+    }
+    addOrUpdate(){
+        let movingTo = `${this.props.z_cur}a`
+        axios.post(`/api/does_z_id_exist`, {movingTo})
+        .then(response=>{
+            // console.log(response.data[0])
+            if(response.data[0]){
+                this.updateReduxZCur()
+            }else{
+                // console.log('does not exist')
+                this.createNewRow()
+            }
+        })
+    }
+    handleText(value){
+        this.setState({
+            text: value
+        })
+        console.log(this.state.text)
+    }
+    editDb(){
+        // console.log(`editing`)
+        let text = this.state.text
+        let z_id = this.props.z_cur
+        axios.post(`/api/change_zc`, {text, z_id}) 
+        .then(()=>console.log(`it is done`)) 
+    }
     render(){
         return (
             this.state.zcText ? (
-                <div className='z_a' onClick={()=>this.updateReduxZCur()}>
+                <div className='z_a' onClick={()=>this.addOrUpdate()}>
                     {this.state.zcText} 
                 </div>
             ):(
                 <div className='z_a'>
                     Edit
+                    <input onChange={e=>this.handleText(e.target.value)}/>
+                    <button onClick={()=>this.editDb()}>do the edit</button> 
                 </div>
             )
         )
