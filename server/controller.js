@@ -102,5 +102,8 @@ module.exports = {
             res.sendStatus(500)
             console.log(err) 
         })
+    },
+    getZAll: (req, res, next)=>{
+        
     }
 }

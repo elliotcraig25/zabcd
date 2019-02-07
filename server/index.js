@@ -15,6 +15,7 @@ app.post(`/api/getza`, ctrl.getZA)
 app.post(`/api/getzb`, ctrl.getZB)
 app.post(`/api/getzc`, ctrl.getZC)
 app.post(`/api/getzd`, ctrl.getZD)
+app.post(`/api/getzall`, ctrl.getZAll)
 
 app.post(`/api/does_z_id_exist`, ctrl.doesZIDExist)
 app.post(`/api/create_new_row`, ctrl.createNewRow)
