@@ -32,10 +32,23 @@ class Za extends React.Component {
     updateReduxZCur(){
         this.props.updateZCur(`${this.state.z_cur}a`)
     }
+    addOrUpdate(){
+        let movingTo = `${this.state.z_cur}a`
+        axios.post(`/api/does_z_id_exist`, {movingTo})
+        .then(response=>{
+            console.log(response.data[0])
+            response.data[0] ? (
+                this.updateReduxZCur()
+            ):(
+                console.log(`does not exist`)
+                
+            )
+        })
+    }
     render(){
         return (
             this.state.zaText ? (
-                <div className='z_a' onClick={()=>this.updateReduxZCur()}>
+                <div className='z_a' onClick={()=>this.addOrUpdate()}>
                     {this.state.zaText}
                 </div>
             ):(
