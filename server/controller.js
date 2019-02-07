@@ -12,6 +12,12 @@ module.exports = {
     createNewRow: (req, res, next)=>{
         let {newZID} = req.body
         console.log(`this is movingTo`, newZID)
+        req.app.get('db').insert_new_row(newZID)
+        .then(response=>res.sendStatus(200))
+        .catch(err=>{
+            res.sendStatus(500)
+            console.log(err) 
+        })
     },
     getZA: (req, res, next)=>{
         let {z_cur} = req.body
