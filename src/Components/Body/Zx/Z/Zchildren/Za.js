@@ -34,8 +34,11 @@ class Za extends React.Component {
     }
     createNewRow(){
         let newZID = `${this.state.z_cur}a`
-        console.log(`here it is agin`, newZID)
+        // console.log(`here it is agin`, newZID)
         axios.post(`/api/create_new_row`, {newZID})
+        .then(()=>{
+            this.updateReduxZCur()
+        }) 
     }
     addOrUpdate(){
         let movingTo = `${this.props.z_cur}a`
