@@ -52,6 +52,17 @@ module.exports = {
             console.log(err) 
         })
     },
+    editD: (req, res, next)=>{
+        let {text, z_id} = req.body
+        console.log(text)
+        console.log(z_id)
+        req.app.get('db').edit_zd([text, z_id])
+        .then(response=>res.sendStatus(200))
+        .catch(err=>{
+            res.sendStatus(500)
+            console.log(err) 
+        })
+    },
     getZA: (req, res, next)=>{
         let {z_cur} = req.body
         // console.log(z_cur)

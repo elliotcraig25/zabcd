@@ -8,7 +8,8 @@ class Zd extends React.Component {
         super()
         this.state = {
             zdText: '',
-            z_cur: ''
+            z_cur: '',
+            text: ''
         }
     }
     componentDidMount(){
@@ -33,7 +34,7 @@ class Zd extends React.Component {
         this.props.updateZCur(`${this.state.z_cur}d`)
     }
     createNewRow(){
-        let newZID = `${this.state.z_cur}a`
+        let newZID = `${this.state.z_cur}d`
         // console.log(`here it is agin`, newZID)
         axios.post(`/api/create_new_row`, {newZID})
         .then(()=>{
@@ -41,7 +42,7 @@ class Zd extends React.Component {
         }) 
     }
     addOrUpdate(){
-        let movingTo = `${this.props.z_cur}a`
+        let movingTo = `${this.props.z_cur}d`
         axios.post(`/api/does_z_id_exist`, {movingTo})
         .then(response=>{
             // console.log(response.data[0])
@@ -53,6 +54,19 @@ class Zd extends React.Component {
             }
         })
     }
+    handleText(value){
+        this.setState({
+            text: value
+        })
+        console.log(this.state.text)
+    }
+    editDb(){
+        // console.log(`editing`)
+        let text = this.state.text
+        let z_id = this.props.z_cur
+        axios.post(`/api/change_zd`, {text, z_id}) 
+        .then(()=>this.getZData()) 
+    }
     render(){
         return (
             this.state.zdText ? (
@@ -62,6 +76,8 @@ class Zd extends React.Component {
             ):(
                 <div className='z_a'>
                     Edit
+                    <input onChange={e=>this.handleText(e.target.value)}/>
+                    <button onClick={()=>this.editDb()}>do the edit</button> 
                 </div>
             )
         )

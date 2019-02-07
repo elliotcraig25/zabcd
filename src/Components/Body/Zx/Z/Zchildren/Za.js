@@ -65,7 +65,7 @@ class Za extends React.Component {
         let text = this.state.text
         let z_id = this.props.z_cur
         axios.post(`/api/change_za`, {text, z_id}) 
-        .then(()=>console.log(`it is done`)) 
+        .then(()=>this.getZData()) 
     }
     render(){
         return (

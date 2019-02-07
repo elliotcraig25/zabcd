@@ -34,7 +34,7 @@ class Zc extends React.Component {
         this.props.updateZCur(`${this.state.z_cur}c`)
     }
     createNewRow(){
-        let newZID = `${this.state.z_cur}a`
+        let newZID = `${this.state.z_cur}c`
         // console.log(`here it is agin`, newZID)
         axios.post(`/api/create_new_row`, {newZID})
         .then(()=>{
@@ -42,7 +42,7 @@ class Zc extends React.Component {
         }) 
     }
     addOrUpdate(){
-        let movingTo = `${this.props.z_cur}a`
+        let movingTo = `${this.props.z_cur}c`
         axios.post(`/api/does_z_id_exist`, {movingTo})
         .then(response=>{
             // console.log(response.data[0])
@@ -65,7 +65,7 @@ class Zc extends React.Component {
         let text = this.state.text
         let z_id = this.props.z_cur
         axios.post(`/api/change_zc`, {text, z_id}) 
-        .then(()=>console.log(`it is done`)) 
+        .then(()=>this.getZData()) 
     }
     render(){
         return (

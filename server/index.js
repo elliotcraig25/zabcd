@@ -21,6 +21,7 @@ app.post(`/api/create_new_row`, ctrl.createNewRow)
 app.post(`/api/change_za`, ctrl.editA)
 app.post(`/api/change_zb`, ctrl.editB)
 app.post(`/api/change_zc`, ctrl.editC)
+app.post(`/api/change_zd`, ctrl.editD)
 
 serverPort = process.env.SERVER_PORT || 4000
 app.listen(serverPort, ()=>{console.log(`listening on the port ${serverPort}`)})
